@@ -1,289 +1,183 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Cyberpunk Engineering Projects</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shreeram Enterprises</title>
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+<style>
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f4f4f4;
+}
 
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Orbitron', sans-serif;
-    }
+/* TOP BAR */
+.topbar {
+  background: #111;
+  color: #ccc;
+  font-size: 12px;
+  padding: 8px;
+  text-align: center;
+}
 
-    body {
-      background: #0d0d0d;
-      color: #00fffa;
-      overflow-x: hidden;
-    }
+/* NAVBAR */
+.navbar {
+  background: #1f2937;
+  color: white;
+  padding: 12px;
+  text-align: center;
+}
 
-    /* TEXT FLICKER */
-    @keyframes flicker {
-      0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; text-shadow: 0 0 5px #00fffa, 0 0 10px #ff00ff; }
-      20%, 22%, 24%, 55% { opacity: 0.6; text-shadow: 0 0 2px #00fffa; }
-    }
+.container {
+  padding: 15px;
+  max-width: 1000px;
+  margin: auto;
+}
 
-    h1, h3 {
-      animation: flicker 1.5s infinite;
-    }
+h3 {
+  margin-top: 25px;
+}
 
-    /* NAVBAR */
-    .navbar {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      background: #1a1a1a;
-      padding: 15px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      border-bottom: 2px solid #00fffa;
-      z-index: 1000;
-    }
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
 
-    .nav-btn {
-      padding: 10px 22px;
-      border-radius: 25px;
-      border: 2px solid #00fffa;
-      cursor: pointer;
-      color: #00fffa;
-      font-size: 16px;
-      background: transparent;
-      transition: 0.2s all ease;
-      position: relative;
-      overflow: hidden;
-    }
+.card {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+}
 
-    .nav-btn::before {
-      content: '';
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      width: 300%;
-      height: 300%;
-      background: linear-gradient(45deg, #ff00ff, #00ffff, #ff00ff, #00ffff);
-      transform: translate(-50%, -50%) rotate(45deg);
-      transition: 0.5s all ease;
-      opacity: 0;
-    }
+.price {
+  color: #2563eb;
+  font-weight: bold;
+}
 
-    .nav-btn:hover::before {
-      opacity: 0.3;
-      transform: translate(-50%, -50%) rotate(0deg);
-    }
+/* BUTTON */
+button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  background: #25D366;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+}
 
-    .nav-btn:hover {
-      color: #fff;
-      text-shadow: 0 0 10px #ff00ff, 0 0 20px #00ffff;
-      transform: scale(1.05);
-    }
+/* CONTACT */
+.contact {
+  margin-top: 30px;
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+}
 
-    /* SECTIONS */
-    .section {
-      display: none;
-      min-height: 100vh;
-      padding: 120px 20px 40px;
-      max-width: 900px;
-      margin: auto;
-      text-align: center;
-    }
+.btn {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  background: #25D366;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 6px;
+}
 
-    .section.active {
-      display: block;
-    }
+.call {
+  background: #2563eb;
+}
 
-    p, li {
-      font-size: 18px;
-      line-height: 1.6;
-      color: #00fffa;
-    }
+.address {
+  margin-top: 10px;
+  font-size: 13px;
+  color: #555;
+}
 
-    .card {
-      background: #111;
-      padding: 25px;
-      border-radius: 15px;
-      margin: 20px 0;
-      box-shadow: 0 0 20px #ff00ff, 0 0 40px #00ffff;
-      text-align: left;
-      border: 1px solid #00fffa;
-      transition: 0.3s all ease;
-    }
+/* DESKTOP */
+@media(min-width:600px){
+  .grid { grid-template-columns: repeat(2,1fr); }
+}
 
-    .card:hover {
-      box-shadow: 0 0 30px #ff00ff, 0 0 60px #00ffff;
-      transform: translateY(-5px);
-    }
-
-    ul {
-      padding-left: 20px;
-    }
-
-    /* GLITCH TRANSITION */
-    .glitch-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      background: #0d0d0d;
-      z-index: 2000;
-      opacity: 0;
-      mix-blend-mode: difference;
-    }
-
-    @keyframes glitch {
-      0% { clip: rect(10px, 9999px, 50px, 0); transform: translate(-3px, -3px); }
-      10% { clip: rect(85px, 9999px, 140px, 0); transform: translate(3px, 3px); }
-      20% { clip: rect(20px, 9999px, 80px, 0); transform: translate(-3px, 3px); }
-      30% { clip: rect(50px, 9999px, 120px, 0); transform: translate(3px, -3px); }
-      40% { clip: rect(0px, 9999px, 20px, 0); transform: translate(-3px, 0px); }
-      50% { clip: rect(40px, 9999px, 100px, 0); transform: translate(3px, 0px); }
-      60% { clip: rect(70px, 9999px, 150px, 0); transform: translate(-3px, -3px); }
-      70% { clip: rect(20px, 9999px, 80px, 0); transform: translate(3px, 3px); }
-      80% { clip: rect(10px, 9999px, 50px, 0); transform: translate(-3px, 3px); }
-      90% { clip: rect(50px, 9999px, 120px, 0); transform: translate(3px, -3px); }
-      100% { clip: rect(0px, 9999px, 20px, 0); transform: translate(0,0); }
-    }
-
-    .glitch-active {
-      opacity: 1;
-      animation: glitch 0.5s steps(2) forwards;
-    }
-
-  </style>
+@media(min-width:900px){
+  .grid { grid-template-columns: repeat(3,1fr); }
+}
+</style>
 </head>
+
 <body>
 
-  <!-- GLITCH OVERLAY -->
-  <div class="glitch-overlay" id="glitch"></div>
+<div class="topbar">
+  📞 +91 9940613861 | 📍 Padur, Kelambakkam
+</div>
 
-  <!-- NAVBAR -->
-  <div class="navbar">
-    <button class="nav-btn" onclick="transitionTo('home')">Home</button>
-    <button class="nav-btn" onclick="transitionTo('wind')">Wind Tunnel</button>
-    <button class="nav-btn" onclick="transitionTo('robot')">Robotic Arm</button>
-  </div>
+<div class="navbar">
+  <h2>Shreeram Enterprises</h2>
+</div>
 
-  <!-- HOME -->
-  <div id="home" class="section active">
-    <h1>Hello There 👋</h1>
-    
-    <div class="card">
-      <p>
-        Hey, I’m <strong>Ramachandran S</strong> — a tinkerer, problem-solver, and engineer-in-the-making. 
-        On this site, you’ll get a peek into my hands-on projects where theory meets real-world chaos: 
-        from building a fully custom wind tunnel that simulates turbulent airflow 
-        to designing a modular robotic arm controlled with a joystick. 
-        Each project is a story of trial, error, and victory, showcasing not just what works, 
-        but all the challenges I conquered along the way. Dive in, explore, and experience the grind behind the glow.
-      </p>
-    </div>
+<div class="container">
 
-    <div class="card">
-      <p>
-        Use the buttons at the top to jump between sections — 
-        <strong>Wind Tunnel</strong> for all things airflow, turbulence, and custom load cell experiments, 
-        and <strong>Robotic Arm</strong> to see how I made mechanical precision and joystick control come alive. 
-        Each section highlights materials, features, and the real struggles I faced. 
-        Hit a button, watch the neon glitch, and explore the projects like you’re inside a futuristic lab.
-      </p>
+  <h3>Products</h3>
+  <div class="grid" id="products"></div>
+
+  <div class="contact">
+    <h3>Contact</h3>
+
+    <a class="btn" href="https://wa.me/919940613861" target="_blank">
+      WhatsApp Now
+    </a>
+
+    <a class="btn call" href="tel:+919940613861">
+      Call Now
+    </a>
+
+    <div class="address">
+      Sivan Kovil Street<br>
+      Near DTDC Courier Office<br>
+      Padur, Kelambakkam - 603103<br>
+      Tamil Nadu, India
     </div>
   </div>
 
-  <!-- WIND TUNNEL -->
-  <div id="wind" class="section">
-    <h1>🌪️ Wind Tunnel</h1>
+</div>
 
-    <div class="card">
-      <h3>Materials Used & Notes:</h3>
-      <ul>
-        <li>Cardboard (main tunnel frame)</li>
-        <li>Straws (for airflow guidance / smoke lines)</li>
-        <li>Smoke chamber (for visualizing airflow)</li>
-        <li>Arduino + HX711 sensor + load cell (for force measurements)</li>
-        <li>Small fan / blower</li>
-        <li><strong>Custom-built and fully designed & assembled by me</strong></li>
-      </ul>
-    </div>
+<script>
+const phone = "919940613861";
 
-    <div class="card">
-      <h3>Features:</h3>
-      <ul>
-        <li>Turbulent airflow simulation</li>
-        <li>Smoke visualization of airflow</li>
-        <li>Measures aerodynamic forces using load cell</li>
-        <li>Realistic simulation for small-scale vehicle testing</li>
-      </ul>
-    </div>
+/* PRODUCTS */
+const products = [
+  { name: "Aluminum Container", price: "₹250 per piece" },
+  { name: "Tomato Sauce", price: "₹60 per bottle" },
+  { name: "500ml Plastic Bowl", price: "₹250 per piece" }
+];
 
-    <div class="card">
-      <h3>Challenges Faced:</h3>
-      <ul>
-        <li>Load cell calibration failed multiple times — took hours to troubleshoot</li>
-        <li>Sealing the test section properly to prevent air leaks</li>
-        <li>Designing and constructing the smoke chamber from scratch</li>
-        <li>Aligning smoke flow through straws for proper visualization</li>
-        <li>Custom building the entire tunnel from scratch required precise cutting and assembly</li>
-        <li>Ensuring turbulent airflow mimics real-world road conditions</li>
-      </ul>
-    </div>
-  </div>
+const container = document.getElementById("products");
 
-  <!-- ROBOTIC ARM -->
-  <div id="robot" class="section">
-    <h1>🤖 Robotic Arm</h1>
+products.forEach(p => {
+  const rawMessage = "Hi, I want to order " + p.name + " (" + p.price + ")";
+  const url = new URL("https://wa.me/" + phone);
+  url.searchParams.set("text", rawMessage);
 
-    <div class="card">
-      <h3>Materials Used & Notes:</h3>
-      <ul>
-        <li>Acrylic (structure) — <strong>cut and assembled by me</strong></li>
-        <li>Servo motors (for joints)</li>
-        <li>Joystick modules (manual control)</li>
-        <li>Arduino / Microcontroller</li>
-        <li>Built using an <strong>internet template</strong> and modified for precision & modularity</li>
-      </ul>
-    </div>
+  const card = document.createElement("div");
+  card.className = "card";
 
-    <div class="card">
-      <h3>Features:</h3>
-      <ul>
-        <li>Multi-joint controlled motion</li>
-        <li>Precision-based mechanical movement</li>
-        <li>Joystick-controlled interface</li>
-      </ul>
-    </div>
+  card.innerHTML = `
+    <h4>${p.name}</h4>
+    <div class="price">${p.price}</div>
+    <button onclick="window.open('${url.toString()}', '_blank')">
+      Order on WhatsApp
+    </button>
+  `;
 
-    <div class="card">
-      <h3>Challenges Faced:</h3>
-      <ul>
-        <li>Cutting acrylic manually without cracking it</li>
-        <li>Making holes for screws too small — had to redo and carefully enlarge</li>
-        <li>Aligning servo motors for smooth movement</li>
-        <li>Integrating joystick controls with Arduino accurately</li>
-        <li>Ensuring structural stability for precise motion</li>
-      </ul>
-    </div>
-  </div>
-
-  <!-- JS -->
-  <script>
-    const glitch = document.getElementById('glitch');
-
-    function transitionTo(id) {
-      glitch.classList.add('glitch-active');
-      setTimeout(() => {
-        document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-        glitch.classList.remove('glitch-active');
-      }, 500); // glitch duration
-    }
-  </script>
+  container.appendChild(card);
+});
+</script>
 
 </body>
 </html>
