@@ -16,8 +16,8 @@ body {
 .topbar {
   background: #111;
   color: #ccc;
-  font-size: 12px;
-  padding: 8px;
+  font-size: 13px;
+  padding: 10px;
   text-align: center;
 }
 
@@ -25,7 +25,7 @@ body {
 .navbar {
   background: #1f2937;
   color: white;
-  padding: 12px;
+  padding: 14px;
   text-align: center;
 }
 
@@ -62,12 +62,11 @@ button {
   width: 100%;
   padding: 10px;
   margin-top: 10px;
-  background: #25D366;
+  background: #2563eb;
   color: white;
   border: none;
   border-radius: 6px;
   font-size: 14px;
-  cursor: pointer;
 }
 
 /* CONTACT */
@@ -78,20 +77,23 @@ button {
   border-radius: 10px;
 }
 
-.btn {
+.call {
   display: block;
   width: 100%;
   padding: 12px;
   margin-top: 10px;
-  background: #25D366;
+  background: #2563eb;
   color: white;
   text-align: center;
   text-decoration: none;
   border-radius: 6px;
+  font-size: 15px;
 }
 
-.call {
-  background: #2563eb;
+.phone {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .address {
@@ -129,11 +131,11 @@ button {
   <div class="contact">
     <h3>Contact</h3>
 
-    <a class="btn" href="https://wa.me/919940613861" target="_blank">
-      WhatsApp Now
-    </a>
+    <div class="phone">
+      Phone: +91 9940613861
+    </div>
 
-    <a class="btn call" href="tel:+919940613861">
+    <a class="call" href="tel:+919940613861">
       Call Now
     </a>
 
@@ -148,9 +150,6 @@ button {
 </div>
 
 <script>
-const phone = "919940613861";
-
-/* PRODUCTS */
 const products = [
   { name: "Aluminum Container", price: "₹250 per piece" },
   { name: "Tomato Sauce", price: "₹60 per bottle" },
@@ -160,19 +159,12 @@ const products = [
 const container = document.getElementById("products");
 
 products.forEach(p => {
-  const rawMessage = "Hi, I want to order " + p.name + " (" + p.price + ")";
-  const url = new URL("https://wa.me/" + phone);
-  url.searchParams.set("text", rawMessage);
-
   const card = document.createElement("div");
   card.className = "card";
 
   card.innerHTML = `
     <h4>${p.name}</h4>
     <div class="price">${p.price}</div>
-    <button onclick="window.open('${url.toString()}', '_blank')">
-      Order on WhatsApp
-    </button>
   `;
 
   container.appendChild(card);
