@@ -142,6 +142,17 @@ padding:28px;
 border:1px solid rgba(255,255,255,0.05);
 }
 
+/* PRODUCT IMAGE */
+.card-img{
+width:100%;
+height:160px;
+object-fit:cover;
+border-radius:16px;
+margin-bottom:18px;
+background:rgba(255,255,255,0.04);
+display:block;
+}
+
 .card h3{
 font-size:24px;
 margin-bottom:18px;
@@ -318,64 +329,70 @@ Padur, Kelambakkam - 603103
 
 const phone = "919940613861";
 
-/* FULL ORIGINAL PRODUCT LIST */
+/* ============================================================
+   PRODUCT LIST
+   Each product: [name, price, imageURL]
+   → Paste your image link in the 3rd slot (the "" part).
+   → If you have no image yet for a product, leave it as "".
+   ============================================================ */
 const products = {
 
 "Sauces & Condiments":[
-["OHS Tomato Sauce (6L Can)",370],
-["OHS Tomato Sauce",65],
-["OHS Chilli Sauce",45],
-["OHS Soya Sauce",45],
-["Kences Tomato Sauce",50],
-["Kences Chilli Sauce",30],
-["Kences Soya Sauce",30],
-["Veeba Peri Peri Sauce",230],
-["Pasta & Pizza Sauce",220],
-["Ketchup Packets",60],
-["Chilli Packets",60],
-["Vinegar",25],
-["Black Pepper",65],
-["White Pepper",45],
-["Nannari Sarbath (750ml)",110],
-["Rose Milk Syrup (750ml)",110]
+["OHS Tomato Sauce (6L Can)",        370, "https://imgs.search.brave.com/7qYyXe6FQn5TxUVWn9PjfWPdIjMLaOb2i5ctxmpAb5A/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMuaHlwZXJwdXJl/LmNvbS9kYXRhL2lt/YWdlcy9wcm9kdWN0/cy84YWVlNWU1OGI3/ZThjZTEzNTFiNzc1/NWNiMzYyZTkxYS5w/bmc"],
+["OHS Tomato Sauce",                  65, "https://imgs.search.brave.com/o51qwKyA456-2KwOtyrVmrIXpt691b6Kg4R7KUC7bB4/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMuaHlwZXJwdXJl/LmNvbS9kYXRhL2lt/YWdlcy9wcm9kdWN0/cy85ZWE1ZmRmYmY2/YTJkMTg0YzQ4N2Y1/ZDZjNDY3NGVjMi5w/bmc"],
+["OHS Chilli Sauce",                  45, "https://imgs.search.brave.com/BOwV9UU1QMWPwTUagagoqVEh8kgoJBA2IzANLvjx40k/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMuaHlwZXJwdXJl/LmNvbS9kYXRhL2lt/YWdlcy9wcm9kdWN0/cy8yMmNmYzVlOThh/MDI3NzA1NWZlMjUw/MWYyZDM2ZjI2MS5w/bmc"],
+["OHS Soya Sauce",                    45, "https://imgs.search.brave.com/0NYddXsNAm5kdfjdUrv-84oVHWikluCNwt9_fzCvYag/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMuaHlwZXJwdXJl/LmNvbS9kYXRhL2lt/YWdlcy9wcm9kdWN0/cy80ZjVhMzExNTYy/YjdjMWJiMzMwOGMx/MjRjOTkwZWNhMi5w/bmc"],
+["Kences Tomato Sauce",               50, "https://imgs.search.brave.com/QIrf_mTBOtkut3d2oujJElqeSyPdyLrFl17hkL6E8SE/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly81Lmlt/aW1nLmNvbS9kYXRh/NS9TRUxMRVIvRGVm/YXVsdC8yMDI0Lzkv/NDUyMjc4NDE3L0xN/L0ZNL1hWLzIyNDcw/MzEzOC93aGF0c2Fw/cC1pbWFnZS0yMDI0/LTA5LTE5LWF0LTMt/NTgtMDEtcG0tMS0y/NTB4MjUwLmpwZWc"],
+["Kences Chilli Sauce",               30, "https://imgs.search.brave.com/BOwV9UU1QMWPwTUagagoqVEh8kgoJBA2IzANLvjx40k/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMuaHlwZXJwdXJl/LmNvbS9kYXRhL2lt/YWdlcy9wcm9kdWN0/cy8yMmNmYzVlOThh/MDI3NzA1NWZlMjUw/MWYyZDM2ZjI2MS5w/bmc"],
+["Kences Soya Sauce",                 30, "https://imgs.search.brave.com/BRccbkCAYnGT2-gcrpUmQGgvrDv-nkvh3jKd0SROIjw/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/ODF4RUFLTVIwTEwu/anBn"],
+["Veeba Peri Peri Sauce",            230, "https://imgs.search.brave.com/5FHKXMC4kt4kOn3r99fQ6gmsacJOWsCPyW9CiD07f5s/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMuaHlwZXJwdXJl/LmNvbS9kYXRhL2lt/YWdlcy9wcm9kdWN0/cy85MGRkZTgzMzA2/NGFhODlhZjRjMGY3/NDIxZTExMjI2ZS5w/bmc"],
+["Pasta & Pizza Sauce",              220, "https://imgs.search.brave.com/_ehDD9Gr2uq45lYkifMnQDiwm5zU9ImetlH1x6srFs4/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9ydWtt/aW5pbTIuZmxpeGNh/cnQuY29tL2ltYWdl/LzgwMC8xMDcwL3hp/ZjBxL3NhdWNlLWtl/dGNodXAveC9rL2Mv/MS1jaGVmLXMtY2hv/aWNlLXBhc3RhLXBp/enphLXNhdWNlLXBv/dWNoLTEtc2F1Y2Ut/dmVlYmEtb3JpZ2lu/YWwtaW1haGNwcHV4/anV5em1mZS5qcGVn/P3E9OTA"],
+["Ketchup Packets",                   60, "https://imgs.search.brave.com/qugRabCS2doq3rlikBDCUAe-Z85EBhxOQZwB2lcHgNg/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly81Lmlt/aW1nLmNvbS9kYXRh/NS9TRUxMRVIvRGVm/YXVsdC8yMDIwLzkv/WVUvUlcvSE4vODI5/NTQ0L3RvbWF0by1r/ZXRjaHVwLTgtZ20t/cy01MDB4NTAwLnBu/Zw"],
+["Chilli Packets",                    60, "https://imgs.search.brave.com/UpXnwqlWijI-xsB3uo8H8AkfUneZDkPr9cUdBIOKWTs/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9hZGRt/ZWZvb2RzLmNvbS9j/ZG4vc2hvcC9maWxl/cy9HcmVlbl9DaGls/bGlfUGlja2xlX0No/dXRuZXlfNDhfU2Fj/aGV0c19Ib21lbWFk/ZV9TcGljeV9DaGF0/bmlfU2F1Y2VfMDEu/d2VicD92PTE3NjE2/NDA2ODcmd2lkdGg9/NTMz"],
+["Vinegar",                           25, "https://imgs.search.brave.com/9sjhnpN72NAdEWzkVSPYI14Sz98v6Usm-ExmuRXhf9M/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly81Lmlt/aW1nLmNvbS9kYXRh/NS9TRUxMRVIvRGVm/YXVsdC8yMDI0LzMv/Mzk3NDYxMDUwL0NE/L0FBL01YLzQ0Mzcx/MzkvcGxhc3RpYy1i/b3R0bGUtMWx0ci0y/NTB4MjUwLmpwZw"],
+["Black Pepper",                      65, "https://imgs.search.brave.com/xls5e5qkFk0Q_plM8fahHReDvFxQ3uoJLIOpsomqvIg/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly81Lmlt/aW1nLmNvbS9kYXRh/NS9BQi9aRi9PVC9T/RUxMRVItNTYxNzUz/OTkvNTAwLWdtLWJs/YWNrLXBlcHBlci1w/b3dkZXItMTAwMHgx/MDAwLmpwZw"],
+["White Pepper",                      45, "https://imgs.search.brave.com/uLrl69KPINb5myVhBixLjuwF4odO41jE10mcfwC79Xo/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly81Lmlt/aW1nLmNvbS9kYXRh/NS9HUC9LRy9aTi9T/RUxMRVItNTYxNzUz/OTkvd2hpdGUtcGVw/cGVyLXBvd2Rlci0y/NTB4MjUwLmpwZw"],
+["Nannari Sarbath (750ml)",          110, "https://imgs.search.brave.com/wzEJ8NbF9Duuh4fj6X60S2JAQx28mvEiBC_zgAUhuVM/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly81Lmlt/aW1nLmNvbS9kYXRh/NS9TRUxMRVIvRGVm/YXVsdC8yMDIwLzkv/QkovTkcvRVQvODI5/NTQ0L25hbm5hcmkt/c2hhcmJhdGgtNTAw/eDUwMC5qcGc"],
+["Rose Milk Syrup (750ml)",          110, "https://imgs.search.brave.com/vgpw_VLYOEZL1rGZPjzvAmL8AF3QoG8_rTeOqZwNiLE/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/a295YW1iZWR1bWFy/a2V0LmluL3VwbG9h/ZHMvcHJvZHVjdC9v/aG1zLXJvc2Utc2hh/cmJhdC03MDBtbC0z/NzE5LTE4MzAwMjkx/NjgucG5n"]
 ],
 
 "Containers & Boxes":[
-["750ml Aluminum Container",340],
-["450ml Aluminum Container",230],
-["250ml Aluminum Container",150],
-["750ml Plastic Biryani Box(per piece)",8],
-["500ml Gravy Box(per piece)",5.80],
-["200ml Gravy Box(per piece)",4.30],
-["120ml Gravy Box(per piece)",2.50],
-["100ml Gravy Box(per piece)",2.30],
-["50ml Gravy Box(per piece)",1.80]
+["750ml Aluminum Container",         340, "https://imgs.search.brave.com/cGOydq7jd6mdYC_Q4-Mdunx_fdqWR0bQs5spWpQ7fCk/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NDFmOG1zNTJncEwu/anBn"],
+["450ml Aluminum Container",         230, "https://imgs.search.brave.com/JICW3Cq-tjLJyvuSTdF7TzZndEo9pTrPBduPNLKQsnw/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9ob21l/Zm9pbC5jb20vY2Ru/L3Nob3AvZmlsZXMv/QUxVLUFMVS0tLTQ1/MC1tbC5wbmc_dj0x/Njk1MTAzNTkyJndp/ZHRoPTE1MDA"],
+["250ml Aluminum Container",         150, "Https://imgs.search.brave.com/JICW3Cq-tjLJyvuSTdF7TzZndEo9pTrPBduPNLKQsnw/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9ob21l/Zm9pbC5jb20vY2Ru/L3Nob3AvZmlsZXMv/QUxVLUFMVS0tLTQ1/MC1tbC5wbmc_dj0x/Njk1MTAzNTkyJndp/ZHRoPTE1MDA"],
+["750ml Plastic Biryani Box black(per piece)", 8, "https://imgs.search.brave.com/E_H4xl0_KxRobpwMojpgy_4ye45A0DWE2ATnZw28gng/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/MzFleUgwNHZSQVMu/anBn"],
+["750ml Plastic Biryani Box white(per piece)", 8, "https://imgs.search.brave.com/i_3FqbAAvBuNLW4u7z0NbJ950nCpg6Nti4MLOxJ1OeU/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly81Lmlt/aW1nLmNvbS9kYXRh/NS9TRUxMRVIvRGVm/YXVsdC8yMDIyLzYv/Vk0vQk0vWkYvNjg2/NjM4NC9kaXNwb3Nh/YmxlLXBsYXN0aWMt/NzUwbWwtYmlyaXlh/bmktY29udGFpbmVy/LTI1MHgyNTAuanBl/Zw"],
+["500ml Gravy Box(per piece)",       5.80, "https://imgs.search.brave.com/Lp3bP4a2dE5gVYd2JvUmckXdQmDsuFOISsJz_Izlamw/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMuaHlwZXJwdXJl/LmNvbS9kYXRhL2lt/YWdlcy9wcm9kdWN0/cy8wYjYyNTFlZWU1/MDRiN2M1Zjg2YzBk/MTFlMmRjMWUyZC5w/bmc"],
+["200ml Gravy Box(per piece)",       4.30, "https://imgs.search.brave.com/eFEjBKftiUUAiYr4e8kaYamb-NrV9-_pNilaL5XtsF8/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/cGlyc3EuY29tL21l/ZGlhL3VwbG9hZHMv/ZXN0aW1hdGUvMTQ5/MDc5NDcwMDAwMC8y/MDAlMjBtbCUyMHdo/aXRlLmpwZw"],
+["120ml Gravy Box(per piece)",       2.50, "https://imgs.search.brave.com/i1nKNVlkZoUaGcClJQWNiqbbOZR1qpPrjBTl_bopC00/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/cGlyc3EuY29tL21l/ZGlhL3VwbG9hZHMv/ZXN0aW1hdGUvMTQ5/MDc5MjA5MTAwMC8x/MDAlMjBtbCUyMHdo/aXRlJTIwbGlkLmpw/Zw"],
+["100ml Gravy Box(per piece)",       2.30, "https://imgs.search.brave.com/i1nKNVlkZoUaGcClJQWNiqbbOZR1qpPrjBTl_bopC00/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/cGlyc3EuY29tL21l/ZGlhL3VwbG9hZHMv/ZXN0aW1hdGUvMTQ5/MDc5MjA5MTAwMC8x/MDAlMjBtbCUyMHdo/aXRlJTIwbGlkLmpw/Zw"],
+["50ml Gravy Box(per piece)",        1.80, "https://imgs.search.brave.com/nzn-Qae9GwwB5jf1u2HCy-TU7n21MKb_7sVu7dd3iDI/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NTFNVml2aUh1YUwu/anBn"]
 ],
 
 "Plates & Cups":[
-["12 Inch Areca Plate(per piece)",9],
-["10 Inch Areca Plate(per piece)",8],
-["Bio Cup (90ml)",35],
-["Normal Tea Cup",30]
+["12 Inch Areca Plate(per piece)",     9, "https://imgs.search.brave.com/t8TOgi_Nsb7N-XpHuH5fiD-aI4mv2XYKP-VL6d9YKJ0/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NDFwcGQrSmNLNVMu/anBn"],
+["10 Inch Areca Plate(per piece)",     8, "https://imgs.search.brave.com/t8TOgi_Nsb7N-XpHuH5fiD-aI4mv2XYKP-VL6d9YKJ0/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NDFwcGQrSmNLNVMu/anBn"],
+["Bio Cup (90ml)",                    35, "https://imgs.search.brave.com/dFqQaD0SqQFY0akRN8_HStbkrfRFLxEwRWLj5VjEV8Y/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NTFEbzVHV2xuQVMu/anBn"],
+["Normal Tea Cup",                    30, "https://imgs.search.brave.com/wrY091DzmT118I4hPS3oNmyZX71ZfpJ5NusGor_tFOk/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly81Lmlt/aW1nLmNvbS9kYXRh/NS9GUi9IRC9IVi9T/RUxMRVItMjMyMTMw/NDIvMTAwLW1sLXBh/cGVyLXRlYS1jdXAt/NTAweDUwMC5qcGc"]
 ],
 
 "Covers & Packaging":[
-["4x6 Silver Cover",35],
-["5x7 Silver Cover",45],
-["6x8 Silver Cover",60],
-["7x9 Silver Cover",80],
-["8x10 Silver Cover",100],
-["Bio Cover (All Sizes)",140],
-["Bill Roll 3 Inch",45],
-["Bill Roll Small",15],
-["LD Sambar Cover (4x6) Half Kilo",140],
-["Aluminum Foil 1kg",390]
+["4x6 Silver Cover",                  35, "https://imgs.search.brave.com/afed8zqkbiyVSjw3sWUdC4Rxu99IqVBLu_ap2Lt1bCM/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jcGlt/Zy50aXN0YXRpYy5j/b20vMTE3Mzk5MzQv/Yi80L1BsYWluLUFs/dW1pbnVtLUZvaWwt/U2lsdmVyLVBvdWNo/Li53ZWJw"],
+["5x7 Silver Cover",                  45, "https://imgs.search.brave.com/afed8zqkbiyVSjw3sWUdC4Rxu99IqVBLu_ap2Lt1bCM/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jcGlt/Zy50aXN0YXRpYy5j/b20vMTE3Mzk5MzQv/Yi80L1BsYWluLUFs/dW1pbnVtLUZvaWwt/U2lsdmVyLVBvdWNo/Li53ZWJw"],
+["6x8 Silver Cover",                  60, "https://imgs.search.brave.com/afed8zqkbiyVSjw3sWUdC4Rxu99IqVBLu_ap2Lt1bCM/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jcGlt/Zy50aXN0YXRpYy5j/b20vMTE3Mzk5MzQv/Yi80L1BsYWluLUFs/dW1pbnVtLUZvaWwt/U2lsdmVyLVBvdWNo/Li53ZWJw"],
+["7x9 Silver Cover",                  80, "https://imgs.search.brave.com/afed8zqkbiyVSjw3sWUdC4Rxu99IqVBLu_ap2Lt1bCM/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jcGlt/Zy50aXN0YXRpYy5j/b20vMTE3Mzk5MzQv/Yi80L1BsYWluLUFs/dW1pbnVtLUZvaWwt/U2lsdmVyLVBvdWNo/Li53ZWJw"],
+["8x10 Silver Cover",                100, "https://imgs.search.brave.com/afed8zqkbiyVSjw3sWUdC4Rxu99IqVBLu_ap2Lt1bCM/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jcGlt/Zy50aXN0YXRpYy5j/b20vMTE3Mzk5MzQv/Yi80L1BsYWluLUFs/dW1pbnVtLUZvaWwt/U2lsdmVyLVBvdWNo/Li53ZWJw"],
+["Bio Cover (All Sizes)",            140, "https://imgs.search.brave.com/m1fjaehrucwlCI3UcxGyAW5tfnHhgSKAt3G93pn6nNw/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9jcGlt/Zy50aXN0YXRpYy5j/b20vMDg1OTU4Mzkv/Yi81L2V4dHJhLTA4/NTk1ODM5LmpwZw"],
+["Bill Roll 3 Inch",                  45, "https://imgs.search.brave.com/2k80lTQQSwcrRR7XnMof1KE6qAZXEcfAuPvIIn6slHw/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NDFZWnJpdzd5akwu/anBn"],
+["Bill Roll Small",                   15, "https://imgs.search.brave.com/2k80lTQQSwcrRR7XnMof1KE6qAZXEcfAuPvIIn6slHw/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NDFZWnJpdzd5akwu/anBn"],
+["LD Sambar Cover (4x6) Half Kilo",  140, "https://imgs.search.brave.com/55ypyr-QZJt0iLYCloxIWK7lbW3bq68uIbOuTLgIZ10/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly81Lmlt/aW1nLmNvbS9kYXRh/NS9FVC9RTC9NWS0x/NjU5NDkwOS9sZC1j/b3Zlci01MDB4NTAw/LmpwZw"],
+["Aluminum Foil 1kg",                390, "https://imgs.search.brave.com/kGy-Xq9tJvEp-ZfjCoOe_ALaG58zWx4hf5ilXQvkd-M/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9jbGFy/ZXR3b3JsZC5jb20v/Y2RuL3Nob3AvZmls/ZXMvQ2xhcmV0QWx1/bWluaXVtRm9pbFJv/bGwxS2cuR3Jvc3Mu/d2VicD92PTE3Njgz/NzA1MjAmd2lkdGg9/MTQ0NQ"]
 ],
 
 "Disposable Supplies":[
-["Tissue, 45 Pulls",10],
-["Eco Tissue, 90 Pulls",25],
-["Large Garbage Cover per kg",130]
+["Tissue, 45 Pulls",                  10, "https://imgs.search.brave.com/vFq4rzbECaTuxIjmCiU8Zgaeu0gfn7VzegOJQnfEuqg/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWFn/ZS5jZG4uc2hweS5p/bi8yODUxNzEvQnJp/dGFubmlhMjQtMTc1/NzM1MzEzMTAxNi5w/bmc_d2lkdGg9NjAw/JmZvcm1hdD13ZWJw"],
+["Eco Tissue, 90 Pulls",              25, "https://imgs.search.brave.com/vFq4rzbECaTuxIjmCiU8Zgaeu0gfn7VzegOJQnfEuqg/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWFn/ZS5jZG4uc2hweS5p/bi8yODUxNzEvQnJp/dGFubmlhMjQtMTc1/NzM1MzEzMTAxNi5w/bmc_d2lkdGg9NjAw/JmZvcm1hdD13ZWJw"],
+["Large Garbage Cover per kg",       130, "https://imgs.search.brave.com/3ylqa33cjG5X-lEnsUDLtUlrtS91QMOyNH_2uec0tl0/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9tLm1l/ZGlhLWFtYXpvbi5j/b20vaW1hZ2VzL0kv/NDFlYWxtZ0VTWUwu/anBn"]
 ]
 
 };
@@ -393,14 +410,20 @@ container.appendChild(section);
 
 const grid = section.querySelector(".grid");
 
-products[category].forEach(([name,price])=>{
+products[category].forEach(([name, price, imgSrc])=>{
 
 const safeId = name.replace(/\s+/g,'-');
 
 const card = document.createElement("div");
 card.className = "card";
 
+/* Image: shown only if a URL is provided */
+const imgHTML = imgSrc
+  ? `<img class="card-img" src="${imgSrc}" alt="${name}" loading="lazy"/>`
+  : `<div class="card-img" style="display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,0.15);font-size:13px;">No image</div>`;
+
 card.innerHTML = `
+${imgHTML}
 <h3>${name}</h3>
 <div class="price">₹${price}</div>
 <div class="controls">
