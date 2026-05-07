@@ -127,41 +127,24 @@ margin-bottom:30px;
 color:#d4af37;
 }
 
-/* GRID (FIXED RESPONSIVE STRUCTURE) */
+/* GRID */
 .grid{
 display:grid;
-grid-template-columns:repeat(3,1fr);
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 gap:24px;
-}
-
-/* Desktop shrink */
-@media(max-width:1200px){
-.grid{
-grid-template-columns:repeat(2,1fr);
-}
-}
-
-/* PHONE = clean single column */
-@media(max-width:768px){
-.grid{
-grid-template-columns:1fr;
-gap:16px;
-}
 }
 
 /* CARD */
 .card{
 background:rgba(20,20,20,0.95);
 border-radius:28px;
-padding:26px;
+padding:28px;
 border:1px solid rgba(255,255,255,0.05);
-display:flex;
-flex-direction:column;
-gap:12px;
 }
 
 .card h3{
 font-size:24px;
+margin-bottom:18px;
 font-family:'Cormorant Garamond',serif;
 }
 
@@ -169,6 +152,7 @@ font-family:'Cormorant Garamond',serif;
 font-size:30px;
 font-weight:700;
 color:#d4af37;
+margin-bottom:24px;
 }
 
 /* CONTROLS */
@@ -177,7 +161,6 @@ display:flex;
 align-items:center;
 justify-content:center;
 gap:18px;
-margin-top:10px;
 }
 
 .controls button{
@@ -281,18 +264,13 @@ text-decoration:none;
 font-weight:700;
 }
 
-/* MOBILE TYPOGRAPHY */
+/* MOBILE */
 @media(max-width:768px){
-
 .hero h1{font-size:56px;}
 .section-title{font-size:44px;}
 .category h2{font-size:34px;}
 .cart-box h2{font-size:42px;}
 .contact h2{font-size:44px;}
-
-.card h3{font-size:20px;}
-.price{font-size:26px;}
-
 }
 
 </style>
@@ -308,8 +286,8 @@ font-weight:700;
 
 <div class="hero-content">
 <h1>Premium Restaurant Supplies. Elevated.</h1>
-<p>Supplying restaurants, cafés and hospitality businesses with premium packaging, sauces and essentials.</p>
-<a class="hero-btn" href="#products">Explore Collection</a>
+<p>Supplying restaurants, cafés and hospitality businesses with premium packaging, sauces and dining essentials.</p>
+<a href="#products" class="hero-btn">Explore Collection</a>
 </div>
 </section>
 
@@ -336,9 +314,9 @@ Send Order on WhatsApp
 
 <section class="contact">
 <h2>Contact</h2>
-<p>
-Shreeram Enterprises<br><br>
+<p>Shreeram Enterprises<br><br>
 Sivan Kovil Street,<br>
+Near DTDC Courier Office,<br>
 Padur, Kelambakkam - 603103
 </p>
 
@@ -349,7 +327,7 @@ Padur, Kelambakkam - 603103
 
 const phone = "919940613861";
 
-/* FULL PRODUCT LIST (UNCHANGED) */
+/* FULL ORIGINAL PRODUCT LIST RESTORED */
 const products = {
 
 "Sauces & Condiments":[
@@ -376,7 +354,6 @@ const products = {
 ["450ml Aluminum Container",230],
 ["250ml Aluminum Container",150],
 ["750ml Plastic Biryani Box(per piece)",8],
-["500ml Plastic Bowl",280],
 ["500ml Gravy Box(per piece)",5.80],
 ["200ml Gravy Box(per piece)",4.30],
 ["120ml Gravy Box(per piece)",2.50],
@@ -446,15 +423,12 @@ grid.appendChild(card);
 });
 }
 
-/* MOBILE + DESKTOP SAFE EVENTS */
+/* FIXED MOBILE + DESKTOP CLICK HANDLING */
 document.addEventListener("click",(e)=>{
 const btn = e.target.closest(".controls button");
 if(!btn) return;
 
-const name = btn.dataset.name;
-const change = parseInt(btn.dataset.change);
-
-changeQty(name,change);
+changeQty(btn.dataset.name, parseInt(btn.dataset.change));
 });
 
 function changeQty(name,change){
@@ -472,7 +446,7 @@ function updateCart(){
 const cartItems = document.getElementById("cartItems");
 const entries = Object.entries(cart).filter(x=>x[1]>0);
 
-if(!entries.length){
+if(entries.length===0){
 cartItems.innerHTML="No products added.";
 return;
 }
