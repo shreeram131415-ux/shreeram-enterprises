@@ -1,174 +1,1007 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
 <title>Shreeram Enterprises</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: #f4f4f4;
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
-/* TOP BAR */
-.topbar {
-  background: #111;
-  color: #ccc;
-  font-size: 13px;
-  padding: 10px;
-  text-align: center;
+html{
+scroll-behavior:smooth;
 }
 
-/* NAVBAR */
-.navbar {
-  background: #1f2937;
-  color: white;
-  padding: 14px;
-  text-align: center;
+body{
+background:#050505;
+color:white;
+font-family:'Inter',sans-serif;
+overflow-x:hidden;
 }
 
-.container {
-  padding: 15px;
-  max-width: 1000px;
-  margin: auto;
+/* GOLD BACKGROUND */
+
+body::before{
+content:'';
+position:fixed;
+inset:0;
+
+background:
+radial-gradient(circle at top left,
+rgba(212,175,55,0.08),
+transparent 30%),
+
+radial-gradient(circle at bottom right,
+rgba(212,175,55,0.05),
+transparent 35%);
+
+pointer-events:none;
+z-index:-1;
 }
 
-h3 {
-  margin-top: 25px;
+/* HERO */
+
+.hero{
+height:100vh;
+
+background:
+linear-gradient(to right,
+rgba(0,0,0,0.88),
+rgba(0,0,0,0.58)),
+
+url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2000&auto=format&fit=crop');
+
+background-size:cover;
+background-position:center;
+
+display:flex;
+align-items:center;
+
+padding:0 8%;
+
+position:relative;
+overflow:hidden;
+}
+
+.hero::after{
+content:'';
+position:absolute;
+inset:0;
+
+background:
+radial-gradient(circle at right,
+rgba(212,175,55,0.14),
+transparent 40%);
+}
+
+.topbar{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+
+padding:30px 8%;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+z-index:5;
+}
+
+.logo{
+font-family:'Cormorant Garamond',serif;
+font-size:42px;
+font-weight:700;
+letter-spacing:2px;
+color:#d4af37;
+}
+
+.top-contact{
+font-size:14px;
+line-height:1.8;
+color:#e5e5e5;
+text-align:right;
+}
+
+.hero-content{
+position:relative;
+z-index:2;
+max-width:760px;
+
+animation:fadeUp 1.2s ease;
+}
+
+.hero h1{
+font-family:'Cormorant Garamond',serif;
+font-size:92px;
+line-height:0.95;
+margin-bottom:26px;
+font-weight:700;
+}
+
+.hero p{
+font-size:18px;
+line-height:1.9;
+color:#d1d5db;
+max-width:620px;
+margin-bottom:38px;
+}
+
+.hero-btn{
+display:inline-block;
+
+padding:18px 38px;
+
+border-radius:60px;
+
+text-decoration:none;
+
+font-weight:700;
+font-size:16px;
+
+background:
+linear-gradient(
+135deg,
+#f5d77d,
+#d4af37
+);
+
+color:black;
+
+transition:0.35s ease;
+
+box-shadow:
+0 10px 35px rgba(212,175,55,0.35);
+}
+
+.hero-btn:hover{
+transform:translateY(-4px) scale(1.03);
+}
+
+/* SECTION */
+
+.section{
+padding:110px 8%;
+}
+
+.section-title{
+font-family:'Cormorant Garamond',serif;
+font-size:68px;
+text-align:center;
+margin-bottom:14px;
+}
+
+.section-sub{
+text-align:center;
+font-size:18px;
+color:#9ca3af;
+margin-bottom:70px;
+}
+
+/* CATEGORY */
+
+.category{
+position:relative;
+
+margin-bottom:90px;
+padding:42px;
+
+border-radius:38px;
+
+background:
+linear-gradient(
+145deg,
+rgba(255,255,255,0.04),
+rgba(255,255,255,0.015)
+);
+
+border:1px solid rgba(212,175,55,0.12);
+
+box-shadow:
+0 10px 40px rgba(0,0,0,0.45);
+
+overflow:hidden;
+
+backdrop-filter:blur(12px);
+}
+
+.category::before{
+content:'';
+position:absolute;
+
+top:-120px;
+left:-120px;
+
+width:320px;
+height:320px;
+
+background:
+radial-gradient(
+circle,
+rgba(212,175,55,0.16),
+transparent 70%
+);
+}
+
+.category h2{
+font-family:'Cormorant Garamond',serif;
+font-size:48px;
+margin-bottom:34px;
+color:#d4af37;
 }
 
 /* GRID */
-.grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 12px;
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:28px;
 }
 
-.card {
-  background: white;
-  padding: 15px;
-  border-radius: 10px;
+/* CARD */
+
+.card{
+position:relative;
+
+background:
+linear-gradient(
+160deg,
+rgba(28,28,28,0.96),
+rgba(10,10,10,0.98)
+);
+
+border-radius:30px;
+padding:30px;
+
+border:1px solid rgba(255,255,255,0.05);
+
+overflow:hidden;
+
+transition:0.4s ease;
+
+box-shadow:
+0 10px 30px rgba(0,0,0,0.35);
 }
 
-.price {
-  color: #2563eb;
-  font-weight: bold;
+.card::before{
+content:'';
+position:absolute;
+inset:0;
+
+background:
+linear-gradient(
+135deg,
+rgba(212,175,55,0.08),
+transparent 45%
+);
 }
 
-/* BUTTON */
-button {
-  width: 100%;
-  padding: 10px;
-  margin-top: 10px;
-  background: #2563eb;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
+.card:hover{
+transform:translateY(-8px);
+
+border-color:rgba(212,175,55,0.3);
+
+box-shadow:
+0 20px 50px rgba(0,0,0,0.45);
+}
+
+.card h3{
+font-size:24px;
+margin-bottom:16px;
+font-family:'Cormorant Garamond',serif;
+position:relative;
+z-index:2;
+}
+
+.price{
+font-size:30px;
+font-weight:700;
+
+background:
+linear-gradient(
+to right,
+#f5d77d,
+#d4af37,
+#fff1b3
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+margin-bottom:24px;
+}
+
+.controls{
+display:flex;
+align-items:center;
+gap:16px;
+}
+
+.controls button{
+width:46px;
+height:46px;
+
+border:none;
+border-radius:50%;
+
+background:
+linear-gradient(
+135deg,
+#f5d77d,
+#d4af37
+);
+
+color:black;
+
+font-size:24px;
+font-weight:700;
+
+cursor:pointer;
+
+transition:0.25s ease;
+}
+
+.controls button:hover{
+transform:scale(1.08);
+}
+
+.qty{
+font-size:20px;
+font-weight:700;
+min-width:24px;
+text-align:center;
+}
+
+/* CART */
+
+.cart-section{
+padding:110px 8%;
+}
+
+.cart-box{
+max-width:950px;
+margin:auto;
+
+background:
+linear-gradient(
+145deg,
+rgba(255,255,255,0.03),
+rgba(255,255,255,0.01)
+);
+
+padding:42px;
+
+border-radius:36px;
+
+border:1px solid rgba(212,175,55,0.12);
+
+box-shadow:
+0 20px 60px rgba(0,0,0,0.45);
+}
+
+.cart-box h2{
+font-family:'Cormorant Garamond',serif;
+font-size:56px;
+margin-bottom:24px;
+text-align:center;
+}
+
+.restaurant-input{
+width:100%;
+
+padding:18px;
+
+border-radius:18px;
+
+background:#111111;
+
+border:1px solid rgba(255,255,255,0.08);
+
+color:white;
+
+font-size:16px;
+font-family:'Inter',sans-serif;
+
+margin-bottom:26px;
+}
+
+.restaurant-input:focus{
+outline:none;
+border-color:#d4af37;
+}
+
+.cart-items{
+margin-bottom:24px;
+}
+
+.cart-item{
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+padding:16px 18px;
+
+background:rgba(255,255,255,0.03);
+
+border-radius:18px;
+
+margin-bottom:14px;
+
+border:1px solid rgba(255,255,255,0.04);
+}
+
+.total{
+font-size:26px;
+font-weight:700;
+margin-top:22px;
+color:#d4af37;
+}
+
+.order-btn{
+width:100%;
+
+padding:18px;
+
+border:none;
+border-radius:60px;
+
+background:
+linear-gradient(
+135deg,
+#f5d77d,
+#d4af37
+);
+
+color:black;
+
+font-size:18px;
+font-weight:700;
+
+cursor:pointer;
+
+transition:0.3s ease;
+}
+
+.order-btn:hover{
+transform:translateY(-3px);
 }
 
 /* CONTACT */
-.contact {
-  margin-top: 30px;
-  background: white;
-  padding: 15px;
-  border-radius: 10px;
+
+.contact{
+padding:110px 8%;
+text-align:center;
 }
 
-.call {
-  display: block;
-  width: 100%;
-  padding: 12px;
-  margin-top: 10px;
-  background: #2563eb;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  border-radius: 6px;
-  font-size: 15px;
+.contact h2{
+font-family:'Cormorant Garamond',serif;
+font-size:64px;
+margin-bottom:22px;
 }
 
-.phone {
-  margin-top: 10px;
-  font-size: 16px;
-  font-weight: bold;
+.contact p{
+color:#d1d5db;
+line-height:1.9;
+font-size:17px;
 }
 
-.address {
-  margin-top: 10px;
-  font-size: 13px;
-  color: #555;
+.call-btn{
+display:inline-block;
+
+margin-top:34px;
+
+padding:18px 38px;
+
+border-radius:60px;
+
+background:
+linear-gradient(
+135deg,
+#f5d77d,
+#d4af37
+);
+
+color:black;
+text-decoration:none;
+
+font-weight:700;
+
+transition:0.3s ease;
 }
 
-/* DESKTOP */
-@media(min-width:600px){
-  .grid { grid-template-columns: repeat(2,1fr); }
+.call-btn:hover{
+transform:translateY(-4px);
 }
 
-@media(min-width:900px){
-  .grid { grid-template-columns: repeat(3,1fr); }
+/* ANIMATION */
+
+@keyframes fadeUp{
+
+from{
+opacity:0;
+transform:translateY(40px);
 }
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+.hero{
+padding:0 6%;
+}
+
+.hero h1{
+font-size:58px;
+line-height:1.05;
+}
+
+.hero p{
+font-size:16px;
+}
+
+.logo{
+font-size:30px;
+}
+
+.top-contact{
+font-size:11px;
+}
+
+.section-title{
+font-size:46px;
+}
+
+.category{
+padding:28px;
+}
+
+.category h2{
+font-size:38px;
+}
+
+.cart-box{
+padding:28px;
+}
+
+.cart-box h2{
+font-size:42px;
+}
+
+.contact h2{
+font-size:48px;
+}
+
+}
+
 </style>
 </head>
 
 <body>
 
+<!-- HERO -->
+
+<section class="hero">
+
 <div class="topbar">
-  📞 +91 9940613861 | 📍 Padur, Kelambakkam
+
+<div class="logo">
+Shreeram Enterprises
 </div>
 
-<div class="navbar">
-  <h2>Shreeram Enterprises</h2>
+<div class="top-contact">
+📞 +91 9940613861<br>
+Padur, Kelambakkam
 </div>
 
-<div class="container">
+</div>
 
-  <h3>Products</h3>
-  <div class="grid" id="products"></div>
+<div class="hero-content">
 
-  <div class="contact">
-    <h3>Contact</h3>
+<h1>
+Premium Restaurant Supplies.
+Elevated.
+</h1>
 
-    <div class="phone">
-      Phone: +91 9940613861
-    </div>
+<p>
+Supplying restaurants, cafés and hospitality businesses with premium packaging, sauces and dining essentials crafted for professional food service environments.
+</p>
 
-    <a class="call" href="tel:+919940613861">
-      Call Now
-    </a>
-
-    <div class="address">
-      Sivan Kovil Street<br>
-      Near DTDC Courier Office<br>
-      Padur, Kelambakkam - 603103<br>
-      Tamil Nadu, India
-    </div>
-  </div>
+<a href="#products" class="hero-btn">
+Explore Collection
+</a>
 
 </div>
+
+</section>
+
+<!-- PRODUCTS -->
+
+<section class="section" id="products">
+
+<h2 class="section-title">
+Curated Supply Collection
+</h2>
+
+<p class="section-sub">
+Luxury-grade restaurant essentials and packaging solutions.
+</p>
+
+<div id="productContainer"></div>
+
+</section>
+
+<!-- CART -->
+
+<section class="cart-section">
+
+<div class="cart-box">
+
+<h2>
+Order Request
+</h2>
+
+<input
+type="text"
+id="restaurantName"
+class="restaurant-input"
+placeholder="Enter Restaurant / Café Name"
+/>
+
+<div class="cart-items" id="cartItems">
+No products added.
+</div>
+
+<button class="order-btn" onclick="sendWhatsAppOrder()">
+Send Order on WhatsApp
+</button>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section class="contact">
+
+<h2>
+Contact
+</h2>
+
+<p>
+Shreeram Enterprises<br><br>
+
+Sivan Kovil Street,<br>
+Near DTDC Courier Office,<br>
+Padur, Kelambakkam - 603103
+</p>
+
+<a class="call-btn" href="tel:+919940613861">
+📞 Call Now
+</a>
+
+</section>
 
 <script>
-const products = [
-  { name: "Aluminum Container", price: "₹250 per piece" },
-  { name: "Tomato Sauce", price: "₹60 per bottle" },
-  { name: "500ml Plastic Bowl", price: "₹250 per piece" }
-];
 
-const container = document.getElementById("products");
+const phone = "919940613861";
 
-products.forEach(p => {
-  const card = document.createElement("div");
-  card.className = "card";
+const products = {
 
-  card.innerHTML = `
-    <h4>${p.name}</h4>
-    <div class="price">${p.price}</div>
-  `;
+"🧂 Sauces & Condiments":[
 
-  container.appendChild(card);
+["OHS Tomato Sauce (6L Can)",370],
+["OHS Tomato Sauce",65],
+["OHS Chilli Sauce",45],
+["OHS Soya Sauce",45],
+
+["Kences Tomato Sauce",50],
+["Kences Chilli Sauce",30],
+["Kences Soya Sauce",30],
+
+["Veeba Peri Peri Sauce",230],
+["Pasta & Pizza Sauce",220],
+
+["Ketchup Packets",60],
+["Chilli Packets",60],
+
+["Vinegar",25],
+
+["Black Pepper",65],
+["White Pepper",45],
+
+["Nannari Sarbath (750ml)",110],
+["Rose Milk Syrup (750ml)",110]
+
+],
+
+"📦 Containers & Boxes":[
+
+["750ml Aluminum Container",340],
+["450ml Aluminum Container",230],
+["250ml Aluminum Container",150],
+
+["750ml Plastic Biryani Box(per piece)",8],
+
+["500ml Plastic Bowl",280],
+
+["500ml Gravy Box(per piece)",5.80],
+["200ml Gravy Box(per piece)",4.30],
+["120ml Gravy Box(per piece)",2.50],
+["100ml Gravy Box(per piece)",2.30],
+["50ml Gravy Box(per piece)",1.80]
+
+],
+
+"🍽 Plates & Cups":[
+
+["12 Inch Areca Plate(per piece)",9],
+["10 Inch Areca Plate(per piece)",8],
+
+["Bio Cup (90ml)",35],
+["Normal Tea Cup",30]
+
+],
+
+"📜 Covers & Packaging":[
+
+["4x6 Silver Cover",35],
+["5x7 Silver Cover",45],
+["6x8 Silver Cover",60],
+["7x9 Silver Cover",80],
+["8x10 Silver Cover",100],
+
+["Bio Cover (All Sizes)",140],
+
+["Bill Roll 3 Inch",45],
+["Bill Roll Small",15],
+
+["LD Sambar Cover (4x6) Half Kilo",140],
+
+["Aluminum Foil 1kg",390]
+
+],
+
+"🧻 Disposable Supplies":[
+
+["Tissue, 45 Pulls",10],
+["Eco Tissue, 90 Pulls",25],
+
+["Large Garbage Cover per kg",130]
+
+]
+
+};
+
+const cart = {};
+
+const container =
+document.getElementById("productContainer");
+
+for(const category in products){
+
+const section =
+document.createElement("div");
+
+section.className = "category";
+
+section.innerHTML = `
+<h2>${category}</h2>
+<div class="grid"></div>
+`;
+
+container.appendChild(section);
+
+const grid = section.querySelector(".grid");
+
+products[category].forEach(product => {
+
+const [name,price] = product;
+
+const safeId =
+name.replace(/\s+/g,'-');
+
+const card =
+document.createElement("div");
+
+card.className = "card";
+
+card.innerHTML = `
+<h3>${name}</h3>
+
+<div class="price">
+₹${price}
+</div>
+
+<div class="controls">
+
+<button onclick="changeQty('${name}',-1)">
+−
+</button>
+
+<div class="qty" id="${safeId}-qty">
+0
+</div>
+
+<button onclick="changeQty('${name}',1)">
++
+</button>
+
+</div>
+`;
+
+grid.appendChild(card);
+
 });
+
+}
+
+function changeQty(name,change){
+
+if(!cart[name]){
+cart[name]=0;
+}
+
+cart[name]+=change;
+
+if(cart[name]<0){
+cart[name]=0;
+}
+
+const safeId =
+name.replace(/\s+/g,'-');
+
+document.getElementById(`${safeId}-qty`).innerText =
+cart[name];
+
+updateCart();
+
+}
+
+function updateCart(){
+
+const cartItems =
+document.getElementById("cartItems");
+
+const entries =
+Object.entries(cart)
+.filter(item=>item[1]>0);
+
+if(entries.length===0){
+
+cartItems.innerText =
+"No products added.";
+
+return;
+
+}
+
+let html = "";
+let total = 0;
+
+entries.forEach(([name,qty])=>{
+
+let price = 0;
+
+for(const category in products){
+
+products[category].forEach(product=>{
+
+if(product[0]===name){
+price = product[1];
+}
+
+});
+
+}
+
+total += price * qty;
+
+html += `
+<div class="cart-item">
+<span>${name} × ${qty}</span>
+<span>₹${(price*qty).toFixed(2)}</span>
+</div>
+`;
+
+});
+
+html += `
+<div class="total">
+Total: ₹${total.toFixed(2)}
+</div>
+`;
+
+cartItems.innerHTML = html;
+
+}
+
+function sendWhatsAppOrder(){
+
+const entries =
+Object.entries(cart)
+.filter(item=>item[1]>0);
+
+if(entries.length===0){
+
+alert("Please add products first.");
+return;
+
+}
+
+const restaurant =
+document.getElementById("restaurantName")
+.value
+.trim();
+
+if(restaurant===""){
+
+alert("Please enter restaurant name.");
+return;
+
+}
+
+let message =
+`Hello, I would like to place an order:
+
+Restaurant Name: ${restaurant}
+
+Order Details:
+`;
+
+let total = 0;
+
+entries.forEach(([name,qty])=>{
+
+let price = 0;
+
+for(const category in products){
+
+products[category].forEach(product=>{
+
+if(product[0]===name){
+price = product[1];
+}
+
+});
+
+}
+
+total += price * qty;
+
+message +=
+`• ${name} × ${qty}\n`;
+
+});
+
+message +=
+`\nTotal: ₹${total.toFixed(2)}`;
+
+const url =
+`https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+window.open(url,"_blank");
+
+}
+
 </script>
 
 </body>
