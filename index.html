@@ -264,15 +264,6 @@ text-decoration:none;
 font-weight:700;
 }
 
-/* MOBILE */
-@media(max-width:768px){
-.hero h1{font-size:56px;}
-.section-title{font-size:44px;}
-.category h2{font-size:34px;}
-.cart-box h2{font-size:42px;}
-.contact h2{font-size:44px;}
-}
-
 </style>
 </head>
 
@@ -280,7 +271,7 @@ font-weight:700;
 
 <section class="hero">
 <div class="topbar">
-<div class="logo">'ShreeramSita Enterprises</div>
+<div class="logo">ShreeramSita Enterprises</div>
 <div class="top-contact">+91 9940613861<br>Padur, Kelambakkam</div>
 </div>
 
@@ -327,7 +318,7 @@ Padur, Kelambakkam - 603103
 
 const phone = "919940613861";
 
-/* FULL ORIGINAL PRODUCT LIST RESTORED */
+/* FULL ORIGINAL PRODUCT LIST */
 const products = {
 
 "Sauces & Condiments":[
@@ -423,7 +414,7 @@ grid.appendChild(card);
 });
 }
 
-/* FIXED MOBILE + DESKTOP CLICK HANDLING */
+/* CLICK HANDLER */
 document.addEventListener("click",(e)=>{
 const btn = e.target.closest(".controls button");
 if(!btn) return;
@@ -472,6 +463,7 @@ html+=`<div class="total">Total: ₹${total.toFixed(2)}</div>`;
 cartItems.innerHTML=html;
 }
 
+/* ✅ UPDATED: DATE + TIME FEATURE ADDED ONLY HERE */
 function sendWhatsAppOrder(){
 
 const entries = Object.entries(cart).filter(x=>x[1]>0);
@@ -480,7 +472,20 @@ if(!entries.length) return alert("Add products first");
 const restaurant = document.getElementById("restaurantName").value.trim();
 if(!restaurant) return alert("Enter restaurant name");
 
-let msg = `Hello, I would like to place an order:\n\nRestaurant: ${restaurant}\n\nOrder:\n`;
+/* DATE FORMAT dd/mm/yy */
+const now = new Date();
+const dd = String(now.getDate()).padStart(2,'0');
+const mm = String(now.getMonth()+1).padStart(2,'0');
+const yy = String(now.getFullYear()).slice(-2);
+const hh = String(now.getHours()).padStart(2,'0');
+const min = String(now.getMinutes()).padStart(2,'0');
+
+const dateTime = `${dd}/${mm}/${yy} ${hh}:${min}`;
+
+let msg = `Hello, I would like to place an order:\n\n`;
+msg += `Restaurant: ${restaurant}\n`;
+msg += `Date & Time: ${dateTime}\n\nOrder:\n`;
+
 let total=0;
 
 entries.forEach(([name,qty])=>{
