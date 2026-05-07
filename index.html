@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
 
 <title>Shreeram Enterprises</title>
 
@@ -17,6 +17,7 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
+-webkit-tap-highlight-color:transparent;
 }
 
 html{
@@ -30,7 +31,7 @@ font-family:'Inter',sans-serif;
 overflow-x:hidden;
 }
 
-/* GOLD BACKGROUND */
+/* BACKGROUND */
 
 body::before{
 content:'';
@@ -53,12 +54,12 @@ z-index:-1;
 /* HERO */
 
 .hero{
-height:100vh;
+min-height:100vh;
 
 background:
 linear-gradient(to right,
 rgba(0,0,0,0.88),
-rgba(0,0,0,0.58)),
+rgba(0,0,0,0.60)),
 
 url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=2000&auto=format&fit=crop');
 
@@ -68,7 +69,7 @@ background-position:center;
 display:flex;
 align-items:center;
 
-padding:0 8%;
+padding:120px 8% 80px;
 
 position:relative;
 overflow:hidden;
@@ -91,26 +92,27 @@ top:0;
 left:0;
 width:100%;
 
-padding:30px 8%;
+padding:24px 8%;
 
 display:flex;
 justify-content:space-between;
 align-items:center;
+gap:20px;
 
 z-index:5;
 }
 
 .logo{
 font-family:'Cormorant Garamond',serif;
-font-size:42px;
+font-size:40px;
 font-weight:700;
-letter-spacing:2px;
+letter-spacing:1px;
 color:#d4af37;
 }
 
 .top-contact{
 font-size:14px;
-line-height:1.8;
+line-height:1.7;
 color:#e5e5e5;
 text-align:right;
 }
@@ -119,13 +121,12 @@ text-align:right;
 position:relative;
 z-index:2;
 max-width:760px;
-
-animation:fadeUp 1.2s ease;
+animation:fadeUp 1s ease;
 }
 
 .hero h1{
 font-family:'Cormorant Garamond',serif;
-font-size:92px;
+font-size:88px;
 line-height:0.95;
 margin-bottom:26px;
 font-weight:700;
@@ -160,20 +161,20 @@ linear-gradient(
 
 color:black;
 
-transition:0.35s ease;
+transition:0.3s ease;
 
 box-shadow:
 0 10px 35px rgba(212,175,55,0.35);
 }
 
 .hero-btn:hover{
-transform:translateY(-4px) scale(1.03);
+transform:translateY(-4px);
 }
 
 /* SECTION */
 
 .section{
-padding:110px 8%;
+padding:100px 8%;
 }
 
 .section-title{
@@ -195,10 +196,10 @@ margin-bottom:70px;
 .category{
 position:relative;
 
-margin-bottom:90px;
-padding:42px;
+margin-bottom:80px;
+padding:38px;
 
-border-radius:38px;
+border-radius:36px;
 
 background:
 linear-gradient(
@@ -209,12 +210,10 @@ rgba(255,255,255,0.015)
 
 border:1px solid rgba(212,175,55,0.12);
 
-box-shadow:
-0 10px 40px rgba(0,0,0,0.45);
-
 overflow:hidden;
 
-backdrop-filter:blur(12px);
+box-shadow:
+0 10px 40px rgba(0,0,0,0.4);
 }
 
 .category::before{
@@ -230,24 +229,26 @@ height:320px;
 background:
 radial-gradient(
 circle,
-rgba(212,175,55,0.16),
+rgba(212,175,55,0.14),
 transparent 70%
 );
 }
 
 .category h2{
 font-family:'Cormorant Garamond',serif;
-font-size:48px;
-margin-bottom:34px;
+font-size:46px;
+margin-bottom:30px;
 color:#d4af37;
+position:relative;
+z-index:2;
 }
 
 /* GRID */
 
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:28px;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:24px;
 }
 
 /* CARD */
@@ -262,14 +263,14 @@ rgba(28,28,28,0.96),
 rgba(10,10,10,0.98)
 );
 
-border-radius:30px;
-padding:30px;
+border-radius:28px;
+padding:28px;
 
 border:1px solid rgba(255,255,255,0.05);
 
 overflow:hidden;
 
-transition:0.4s ease;
+transition:0.3s ease;
 
 box-shadow:
 0 10px 30px rgba(0,0,0,0.35);
@@ -289,18 +290,18 @@ transparent 45%
 }
 
 .card:hover{
-transform:translateY(-8px);
+transform:translateY(-6px);
 
 border-color:rgba(212,175,55,0.3);
-
-box-shadow:
-0 20px 50px rgba(0,0,0,0.45);
 }
 
 .card h3{
 font-size:24px;
-margin-bottom:16px;
+line-height:1.3;
+margin-bottom:18px;
+
 font-family:'Cormorant Garamond',serif;
+
 position:relative;
 z-index:2;
 }
@@ -326,12 +327,16 @@ margin-bottom:24px;
 .controls{
 display:flex;
 align-items:center;
-gap:16px;
+justify-content:center;
+gap:18px;
+margin-top:10px;
 }
 
+/* MOBILE SAFE BUTTONS */
+
 .controls button{
-width:46px;
-height:46px;
+width:52px;
+height:52px;
 
 border:none;
 border-radius:50%;
@@ -345,29 +350,39 @@ linear-gradient(
 
 color:black;
 
-font-size:24px;
+font-size:28px;
 font-weight:700;
 
 cursor:pointer;
 
-transition:0.25s ease;
+display:flex;
+justify-content:center;
+align-items:center;
+
+touch-action:manipulation;
+
+user-select:none;
+
+-webkit-user-select:none;
+
+transition:0.2s ease;
 }
 
-.controls button:hover{
-transform:scale(1.08);
+.controls button:active{
+transform:scale(0.92);
 }
 
 .qty{
-font-size:20px;
+font-size:22px;
 font-weight:700;
-min-width:24px;
+min-width:28px;
 text-align:center;
 }
 
 /* CART */
 
 .cart-section{
-padding:110px 8%;
+padding:100px 8%;
 }
 
 .cart-box{
@@ -381,9 +396,9 @@ rgba(255,255,255,0.03),
 rgba(255,255,255,0.01)
 );
 
-padding:42px;
+padding:40px;
 
-border-radius:36px;
+border-radius:34px;
 
 border:1px solid rgba(212,175,55,0.12);
 
@@ -412,7 +427,6 @@ border:1px solid rgba(255,255,255,0.08);
 color:white;
 
 font-size:16px;
-font-family:'Inter',sans-serif;
 
 margin-bottom:26px;
 }
@@ -438,8 +452,6 @@ background:rgba(255,255,255,0.03);
 border-radius:18px;
 
 margin-bottom:14px;
-
-border:1px solid rgba(255,255,255,0.04);
 }
 
 .total{
@@ -449,10 +461,12 @@ margin-top:22px;
 color:#d4af37;
 }
 
+/* FIXED MOBILE ORDER BUTTON */
+
 .order-btn{
 width:100%;
 
-padding:18px;
+padding:20px;
 
 border:none;
 border-radius:60px;
@@ -471,17 +485,23 @@ font-weight:700;
 
 cursor:pointer;
 
-transition:0.3s ease;
+touch-action:manipulation;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+transition:0.2s ease;
 }
 
-.order-btn:hover{
-transform:translateY(-3px);
+.order-btn:active{
+transform:scale(0.98);
 }
 
 /* CONTACT */
 
 .contact{
-padding:110px 8%;
+padding:100px 8%;
 text-align:center;
 }
 
@@ -546,48 +566,125 @@ transform:translateY(0);
 @media(max-width:768px){
 
 .hero{
-padding:0 6%;
+padding:130px 6% 80px;
+min-height:auto;
 }
 
-.hero h1{
-font-size:58px;
-line-height:1.05;
+.topbar{
+flex-direction:column;
+align-items:flex-start;
 }
 
-.hero p{
-font-size:16px;
+.top-contact{
+text-align:left;
+font-size:13px;
 }
 
 .logo{
 font-size:30px;
 }
 
-.top-contact{
-font-size:11px;
+.hero h1{
+font-size:56px;
+line-height:1.05;
+}
+
+.hero p{
+font-size:16px;
+line-height:1.8;
+}
+
+.hero-btn{
+width:100%;
+text-align:center;
+}
+
+.section{
+padding:80px 6%;
 }
 
 .section-title{
-font-size:46px;
+font-size:44px;
+}
+
+.section-sub{
+font-size:15px;
 }
 
 .category{
-padding:28px;
+padding:24px;
+border-radius:28px;
 }
 
 .category h2{
-font-size:38px;
+font-size:34px;
+}
+
+.grid{
+grid-template-columns:1fr;
+gap:18px;
+}
+
+.card{
+padding:24px;
+}
+
+.card h3{
+font-size:22px;
+}
+
+.price{
+font-size:28px;
+}
+
+.controls button{
+width:58px;
+height:58px;
+font-size:30px;
+}
+
+.qty{
+font-size:22px;
+}
+
+.cart-section{
+padding:80px 6%;
 }
 
 .cart-box{
-padding:28px;
+padding:24px;
+border-radius:28px;
 }
 
 .cart-box h2{
 font-size:42px;
 }
 
+.restaurant-input{
+padding:16px;
+font-size:16px;
+}
+
+.order-btn{
+padding:18px;
+font-size:17px;
+}
+
+.contact{
+padding:80px 6%;
+}
+
 .contact h2{
-font-size:48px;
+font-size:44px;
+}
+
+.contact p{
+font-size:15px;
+}
+
+.call-btn{
+width:100%;
+text-align:center;
 }
 
 }
@@ -596,8 +693,6 @@ font-size:48px;
 </head>
 
 <body>
-
-<!-- HERO -->
 
 <section class="hero">
 
@@ -608,7 +703,7 @@ Shreeram Enterprises
 </div>
 
 <div class="top-contact">
-📞 +91 9940613861<br>
++91 9940613861<br>
 Padur, Kelambakkam
 </div>
 
@@ -633,8 +728,6 @@ Explore Collection
 
 </section>
 
-<!-- PRODUCTS -->
-
 <section class="section" id="products">
 
 <h2 class="section-title">
@@ -642,14 +735,12 @@ Curated Supply Collection
 </h2>
 
 <p class="section-sub">
-premium-grade restaurant essentials and packaging solutions.
+Luxury-grade restaurant essentials and packaging solutions.
 </p>
 
 <div id="productContainer"></div>
 
 </section>
-
-<!-- CART -->
 
 <section class="cart-section">
 
@@ -670,15 +761,16 @@ placeholder="Enter Restaurant / Café Name"
 No products added.
 </div>
 
-<button class="order-btn" onclick="sendWhatsAppOrder()">
+<button
+class="order-btn"
+type="button"
+onclick="sendWhatsAppOrder()">
 Send Order on WhatsApp
 </button>
 
 </div>
 
 </section>
-
-<!-- CONTACT -->
 
 <section class="contact">
 
@@ -695,7 +787,7 @@ Padur, Kelambakkam - 603103
 </p>
 
 <a class="call-btn" href="tel:+919940613861">
-📞 Call Now
+Call Now
 </a>
 
 </section>
@@ -707,86 +799,61 @@ const phone = "919940613861";
 const products = {
 
 "Sauces & Condiments":[
-
 ["OHS Tomato Sauce (6L Can)",370],
 ["OHS Tomato Sauce",65],
 ["OHS Chilli Sauce",45],
 ["OHS Soya Sauce",45],
-
 ["Kences Tomato Sauce",50],
 ["Kences Chilli Sauce",30],
 ["Kences Soya Sauce",30],
-
 ["Veeba Peri Peri Sauce",230],
 ["Pasta & Pizza Sauce",220],
-
 ["Ketchup Packets",60],
 ["Chilli Packets",60],
-
 ["Vinegar",25],
-
 ["Black Pepper",65],
 ["White Pepper",45],
-
 ["Nannari Sarbath (750ml)",110],
 ["Rose Milk Syrup (750ml)",110]
-
 ],
 
 "Containers & Boxes":[
-
 ["750ml Aluminum Container",340],
 ["450ml Aluminum Container",230],
 ["250ml Aluminum Container",150],
-
 ["750ml Plastic Biryani Box(per piece)",8],
-
 ["500ml Plastic Bowl",280],
-
 ["500ml Gravy Box(per piece)",5.80],
 ["200ml Gravy Box(per piece)",4.30],
 ["120ml Gravy Box(per piece)",2.50],
 ["100ml Gravy Box(per piece)",2.30],
 ["50ml Gravy Box(per piece)",1.80]
-
 ],
 
-"🍽 Plates & Cups":[
-
+"Plates & Cups":[
 ["12 Inch Areca Plate(per piece)",9],
 ["10 Inch Areca Plate(per piece)",8],
-
 ["Bio Cup (90ml)",35],
 ["Normal Tea Cup",30]
-
 ],
 
 "Covers & Packaging":[
-
 ["4x6 Silver Cover",35],
 ["5x7 Silver Cover",45],
 ["6x8 Silver Cover",60],
 ["7x9 Silver Cover",80],
 ["8x10 Silver Cover",100],
-
 ["Bio Cover (All Sizes)",140],
-
 ["Bill Roll 3 Inch",45],
 ["Bill Roll Small",15],
-
 ["LD Sambar Cover (4x6) Half Kilo",140],
-
 ["Aluminum Foil 1kg",390]
-
 ],
 
 "Disposable Supplies":[
-
 ["Tissue, 45 Pulls",10],
 ["Eco Tissue, 90 Pulls",25],
-
 ["Large Garbage Cover per kg",130]
-
 ]
 
 };
@@ -795,6 +862,8 @@ const cart = {};
 
 const container =
 document.getElementById("productContainer");
+
+/* CREATE PRODUCTS */
 
 for(const category in products){
 
@@ -833,15 +902,15 @@ card.innerHTML = `
 
 <div class="controls">
 
-<button onclick="changeQty('${name}',-1)">
-−
+<button type="button" data-name="${name}" data-change="-1">
+-
 </button>
 
 <div class="qty" id="${safeId}-qty">
 0
 </div>
 
-<button onclick="changeQty('${name}',1)">
+<button type="button" data-name="${name}" data-change="1">
 +
 </button>
 
@@ -853,6 +922,24 @@ grid.appendChild(card);
 });
 
 }
+
+/* MOBILE SAFE BUTTON EVENTS */
+
+document.querySelectorAll(".controls button")
+.forEach(button => {
+
+button.addEventListener("click", function(){
+
+const name = this.dataset.name;
+const change = parseInt(this.dataset.change);
+
+changeQty(name, change);
+
+});
+
+});
+
+/* CHANGE QUANTITY */
 
 function changeQty(name,change){
 
@@ -876,6 +963,8 @@ updateCart();
 
 }
 
+/* UPDATE CART */
+
 function updateCart(){
 
 const cartItems =
@@ -887,7 +976,7 @@ Object.entries(cart)
 
 if(entries.length===0){
 
-cartItems.innerText =
+cartItems.innerHTML =
 "No products added.";
 
 return;
@@ -933,6 +1022,8 @@ Total: ₹${total.toFixed(2)}
 cartItems.innerHTML = html;
 
 }
+
+/* WHATSAPP ORDER */
 
 function sendWhatsAppOrder(){
 
@@ -998,7 +1089,7 @@ message +=
 const url =
 `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
-window.open(url,"_blank");
+window.location.href = url;
 
 }
 
